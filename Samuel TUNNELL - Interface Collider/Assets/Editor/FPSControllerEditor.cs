@@ -4,8 +4,6 @@ using UnityEditor;
 [CustomEditor(typeof(FpsControllerLPFP))]
 public class FPSControllerEditor : Editor
 {
-    float thumbnailWidth = 70;
-    float thumbnailHeight = 70;
     float labelWidth = 150f;
 
     string presetName = "Preset 1";

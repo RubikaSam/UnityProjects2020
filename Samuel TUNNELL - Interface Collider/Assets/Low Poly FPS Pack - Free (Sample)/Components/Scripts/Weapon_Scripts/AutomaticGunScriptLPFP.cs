@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 // ----- Low Poly FPS Pack Free Version -----
 public class AutomaticGunScriptLPFP : MonoBehaviour {
+	
+	public WeaponSettings weaponSettings;
 
 	//Animator component attached to weapon
 	Animator anim;
@@ -40,10 +42,7 @@ public class AutomaticGunScriptLPFP : MonoBehaviour {
 
 	//Used for fire rate
 	private float lastFired;
-	[Header("Weapon Settings")]
-	//How fast the weapon fires, higher value means faster rate of fire
-	[Tooltip("How fast the weapon fires, higher value means faster rate of fire.")]
-	public float fireRate;
+
 	//Eanbles auto reloading when out of ammo
 	[Tooltip("Enables auto reloading when out of ammo.")]
 	public bool autoReload;
@@ -73,10 +72,6 @@ public class AutomaticGunScriptLPFP : MonoBehaviour {
 	//Check if out of ammo
 	private bool outOfAmmo;
 
-	[Header("Bullet Settings")]
-	//Bullet
-	[Tooltip("How much force is applied to the bullet when shooting.")]
-	public float bulletForce = 400.0f;
 	[Tooltip("How long after reloading that the bullet model becomes visible " +
 		"again, only used for out of ammo reload animations.")]
 	public float showBulletInMagDelay = 0.6f;
@@ -124,7 +119,8 @@ public class AutomaticGunScriptLPFP : MonoBehaviour {
 	{  
 		[Header("Prefabs")]
 		public Transform bulletPrefab;
-		public Transform casingPrefab;
+		public Transform bigCasingPrefab;
+		public Transform smallCasingPrefab;
 		public Transform grenadePrefab;
 	}
 	public prefabs Prefabs;
@@ -332,8 +328,9 @@ public class AutomaticGunScriptLPFP : MonoBehaviour {
 		//Left click hold 
 		if (Input.GetMouseButton (0) && !outOfAmmo && !isReloading && !isInspecting && !isRunning) 
 		{
+			float _fireRate = weaponSettings.fireRate;
 			//Shoot automatic
-			if (Time.time - lastFired > 1 / fireRate) 
+			if (Time.time - lastFired > 1 / _fireRate) 
 			{
 				lastFired = Time.time;
 
@@ -403,20 +400,23 @@ public class AutomaticGunScriptLPFP : MonoBehaviour {
 					}
 				}
 
-				//Spawn bullet from bullet spawnpoint
-				var bullet = (Transform)Instantiate (
+				float bulletForce = weaponSettings.bulletForce;
+
+					//Spawn bullet from bullet spawnpoint
+					var bullet = (Transform)Instantiate (
 					Prefabs.bulletPrefab,
 					Spawnpoints.bulletSpawnPoint.transform.position,
 					Spawnpoints.bulletSpawnPoint.transform.rotation);
 
-				//Add velocity to the bullet
-				bullet.GetComponent<Rigidbody>().velocity = 
+					//Add velocity to the bullet
+					bullet.GetComponent<Rigidbody>().velocity = 
 					bullet.transform.forward * bulletForce;
 				
-				//Spawn casing prefab at spawnpoint
-				Instantiate (Prefabs.casingPrefab, 
+					//Spawn casing prefab at spawnpoint
+					Instantiate (Prefabs.bigCasingPrefab, 
 					Spawnpoints.casingSpawnPoint.transform.position, 
 					Spawnpoints.casingSpawnPoint.transform.rotation);
+
 			}
 		}
 

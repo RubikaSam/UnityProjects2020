@@ -28,10 +28,9 @@ using UnityEngine;
 
 		[Header("Movement Settings")]
 
-        [Space(10)]
-
         [Range (2f, 10f)]
         [Tooltip("How fast the player moves while walking and strafing."), SerializeField]
+        [Space(15f)]
         public float walkingSpeed = 5f;
 
         [Space(10)]
@@ -52,9 +51,9 @@ using UnityEngine;
         [Tooltip("Amount of force applied to the player when jumping."), SerializeField]
         public float jumpForce = 35f;
 
-        [Space(10)]
+        //[Space(20f)]
 
-		[Header("Look Settings")]
+		[Header("Look Settings"), Space(10)]
 
         [Range (1f, 10f)]
         [Tooltip("Rotation speed of the fps controller."), SerializeField]

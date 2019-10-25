@@ -6032,6 +6032,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd38df9a0796d9842adfbe580ed6042e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponSettings: {fileID: 0}
   gunCamera: {fileID: 20176831017129482}
   fovSpeed: 15
   defaultFov: 40
@@ -6041,11 +6042,9 @@ MonoBehaviour:
   swayAmount: 0.02
   maxSwayAmount: 0.06
   swaySmoothValue: 10
-  fireRate: 11.5
   autoReload: 0
   autoReloadDelay: 0.25
   ammo: 31
-  bulletForce: 400
   showBulletInMagDelay: 0.6
   bulletInMagRenderer: {fileID: 137799156817685020}
   grenadeSpawnDelay: 0.35
@@ -6066,9 +6065,11 @@ MonoBehaviour:
   currentAmmoText: {fileID: 114415168076469552}
   totalAmmoText: {fileID: 114038877413476516}
   Prefabs:
-    bulletPrefab: {fileID: 4879702113200764, guid: 5953171a59c27394e9ad5cbb564affa8,
+    bulletPrefab: {fileID: 4879702113200764, guid: 249a8eb24a82364409314dbba7bab1cb,
       type: 3}
-    casingPrefab: {fileID: 4420745226056240, guid: 7be59128a5ee3424faf33d7a408c0b2e,
+    bigCasingPrefab: {fileID: 4420745226056240, guid: ee22e4c7296aae44a80d4d69356d8c50,
+      type: 3}
+    smallCasingPrefab: {fileID: 4924048156253418, guid: a222dd14d50f783469a886c4c4a8bfe1,
       type: 3}
     grenadePrefab: {fileID: 4191440083646698, guid: 7b04fe350ed10a741a1e245447860d9e,
       type: 3}
@@ -7092,6 +7093,7 @@ GameObject:
   - component: {fileID: 136200420258760052}
   - component: {fileID: 82931547174934612}
   - component: {fileID: 6946991329910963937}
+  - component: {fileID: 7557852769034738645}
   m_Layer: 8
   m_Name: Assault_Rifle_01_FPSController
   m_TagString: Untagged
@@ -7276,6 +7278,21 @@ MonoBehaviour:
     strafe: Vertical
     run: Fire3
     jump: Jump
+--- !u!114 &7557852769034738645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1778574915019774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2c3fd8d5c3c5f349982359a04fd7657, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletType: 0
+  fireRate: 5
+  bulletForce: 400
 --- !u!1 &1779037449516710
 GameObject:
   m_ObjectHideFlags: 0
